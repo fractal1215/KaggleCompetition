@@ -3,6 +3,17 @@
 
 This repository contains a Kaggle competition solution for real-estate demand prediction. Work is notebook-first (data exploration, preprocessing, modelling, submissions) with supporting scripts and an optional `src/` package for reusable code.
 
+## Terminal Safety Rules
+
+- Never delete, modify, or chmod:
+  - `/bin`, `/sbin`, `/usr`, `/lib`, `/System`, `/boot`, `/efi`
+- Never touch `/etc` (system configs) or `/dev`, `/proc`, `/sys` (devices & kernel)
+- Do not run destructive commands:
+  - `rm -rf /`, `chmod -R 777 /`, `shutdown`, `reboot`, `kill -9 1`
+- Do not install/uninstall system-wide packages (`apt`, `yum`, `brew`, etc.)
+- Do not modify networking or security configs (`/etc/hosts`, firewall, SSL certs)
+- Allowed: only work inside project folders (e.g., `~/Python/KaggleCompetition/`), safe dirs (`/tmp`, `~/Downloads`), and virtual environments.
+
 # Where to look first
 
 - `notebooks/` — primary work. Cells contain the full data pipeline and model experiments (00...09). Use these for data flow, feature engineering, and modelling examples.
