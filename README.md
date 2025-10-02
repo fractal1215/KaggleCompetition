@@ -29,16 +29,16 @@ Predict monthly housing transaction amounts for 96 geographic sectors in China f
 
 ## Models Attempted
 
-| Model | Validation | Actual Score | Correlation | Result |
+| Model | MAPE | Actual Score | Correlation | Result |
 |-------|-----------|--------------|-------------|---------|
-| Basic EWGM | - | 0.56006 | 1.00 | ✓ Baseline |
-| EWGM + POI | - | 0.56569 | 0.98 | ✓ Second Best |
+| Basic EWGM | 0.7817 | 0.56006 | 1.00 | ✓ Baseline |
+| EWGM + POI | 0.7539 | 0.56569 | 0.98 | ✓ Second Best |
 | Prophet | 0.615 | 0.18415 | 0.50 | ✗ Predicted mean reversion |
 | EWGM Sector-Specific Alphas | 0.615 | - | 0.50 | ✗ Overfitting |
 | Optuna | 0.594 | 0.42311 | 0.47 | ✗ Overfitting |
-| XGBoost | 0.90 CV | 0.44336 | 0.05 | ✗ Learned broken patterns |
+| XGBoost | 0.9076 | 0.44336 | 0.05 | ✗ Learned broken patterns |
 | Lasso | - | 0.18415 | 0.02 | ✗ No relationships |
-| EWGM Ensemble | 0.9651 | 0.53930 | 0.97 | ✗ Seasonality conflict |
+| EWGM Ensemble | 0.9651 | 0.56110 | 0.97 | ✗ Seasonality conflict |
 | EWGM Ensemble KAGGLE | - | 0.57682 | - | ✓ Best |
 
 ## Key Learnings
