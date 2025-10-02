@@ -19,7 +19,7 @@ Predict monthly housing transaction amounts for 96 geographic sectors in China f
   - **Method 2**: EWGM with December seasonality bump (α=0.5, 7-month lookback, multiplier clipped 0.85-1.4x)
   - **Ensemble**: 0.3 × Method1 + 0.6 × Method2
 
-### Key Insights
+### Details
 - **Non-normalized weights (sum=0.9)**: Both methods over-predict in the declining market; 10% haircut improves accuracy
 - **Heavy seasonality weighting (2:1 ratio)**: December patterns are more stable than recent trends in a crashing market
 - **Why EWGM works**: 
@@ -27,7 +27,6 @@ Predict monthly housing transaction amounts for 96 geographic sectors in China f
   - Exponential weighting (α=0.5) emphasizes recent months while smoothing volatility
   - Simple enough to avoid overfitting on limited data (67 training months)
   - Robust to outliers (critical for competition's two-stage MAPE scoring)
-- **What failed**: Complex ML (XGBoost, Prophet, Lasso) overfit to broken historical patterns; simple trend-following + seasonality wins
 
 ## Models Attempted
 
