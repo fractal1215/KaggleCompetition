@@ -39,6 +39,7 @@ Predict monthly housing transaction amounts for 96 geographic sectors in China f
 | XGBoost | 0.90 CV | - | 0.05 | ✗ Learned broken patterns |
 | Lasso | - | - | 0.02 | ✗ No relationships |
 | EWGM Ensemble | 0.9651 | 0.53930 | 0.97 | ✗ Seasonality conflict |
+| EWGM Ensemble KAGGLE | - | 0.57682 | - | - |
 
 ## Key Learnings
 
@@ -52,9 +53,10 @@ Predict monthly housing transaction amounts for 96 geographic sectors in China f
 
 ```
 ├── notebooks/
+│   ├── 09_Less_Variables_XGBoost.ipynb         # XGBoost experiments (failed)
 │   ├── 12_DAN_Submission_EWGM_POI.ipynb        # Final baseline model (0.56569)
-│   ├── 13_EWGM_Ensemble.ipynb                   # Ensemble experiments
-│   └── 09_Less_Variables_XGBoost.ipynb         # XGBoost experiments (failed)
+│   ├── 13_EWGM_Ensemble.ipynb                  # Ensemble experiments
+│   └── 14_EWGM_Kaggle_Ensemble.ipynb           # Highest Scoring submission (0.57682)
 ├── data/
 │   ├── train/                                  # Historical transaction data
 │   └── sample_submission.csv                   # Submission format
