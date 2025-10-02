@@ -12,20 +12,28 @@ Predict monthly housing transaction amounts for 96 geographic sectors in China f
 
 ## Approach
 
-### Final Model: EWGM with POI Features
-- **Score**: 0.56569 (baseline: 0.56006)
-- **Method**: Exponentially weighted geometric mean with Point of Interest feature enhancement
-- **Key Parameters**: 
-  - 6-month lookback window
-  - Alpha = 0.5 (exponential decay)
-  - December seasonal multiplier (0.85-1.4x)
-  - POI weight = 0.1
+### Final Model: Optimized EWGM Ensemble with Validation-Tuned Weights
+- **Score**: 0.57682 (baseline: 0.56006, +2.99% improvement)
+- **Method**: Two-stage ensemble combining trend-following with seasonal patterns
+  - **Method 1**: Weighted Geometric Mean with exponential decay (α=0.5, 6-month lookback)
+  - **Method 2**: EWGM with December seasonality bump (α=0.5, 7-month lookback, multiplier clipped 0.85-1.4x)
+  - **Ensemble**: 0.3 × Method1 + 0.6 × Method2
 
-### Why EWGM?
-- Geometric mean handles zeros naturally (common in sparse sectors)
-- Exponential weighting captures recent market trends
-- Simple enough to avoid overfitting on limited data (67 months)
-- Robust to outliers (critical for competition scoring function)
+### Key Insights
+- **Non-normalized weights (sum=0.9)**: Both methods over-predict in the declining market; 10% haircut improves accuracy
+- **Heavy seasonality weighting (2:1 ratio)**: December patterns are more stable than recent trends in a crashing market
+- **Why EWGM works**: 
+  - Geometric mean handles zeros naturally (common in sparse sectors)
+  - Exponential weighting (α=0.5) emphasizes recent months while smoothing volatility
+  - Simple enough to avoid overfitting on limited data (67 training months)
+  - Robust to outliers (critical for competition's two-stage MAPE scoring)
+- **What failed**: Complex ML (XGBoost, Prophet, Lasso) overfit to broken historical patterns; simple trend-following + seasonality wins
+
+### Weight Optimization Framework
+Weights discovered through systematic 2D grid search on validation set (last 6 months):
+- Tested 900+ combinations (w1: 0-1.5, w2: 0-1.5, step: 0.05)
+- Custom metric implementation matches competition's two-stage MAPE exactly
+- Validation prevents overfitting while preserving limited daily submissions (5/day)
 
 ## Models Attempted
 
