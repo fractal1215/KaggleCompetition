@@ -68,14 +68,26 @@ Predict monthly housing transaction amounts for 96 geographic sectors in China f
 ## Usage
 
 ```python
-# Generate predictions
-python notebooks/EWGM_POI.ipynb
+# Method 1: Weighted Geometric Mean Configuration
+CONFIG_METHOD1 = {
+    'n_lags': 6,          # Number of months to look back
+    'alpha': 0.5,         # Exponential decay parameter (0 < alpha < 1)
+    't2': 6,              # Months to check for baseline condition (zero-handling)
+}
 
-# Modify parameters in CONFIG dictionary
-CONFIG = {
-    'n_lags': 6,        # Lookback window
-    'alpha': 0.5,       # Exponential decay
-    'poi_weight': 0.1,  # POI feature weight
+# Method 2: Seasonality Bump Configuration
+CONFIG_METHOD2 = {
+    'n_lags': 7,          # Number of months to look back
+    'alpha': 0.5,         # Exponential decay parameter
+    't2': 6,              # Months to check for baseline condition
+    'clip_low': 0.85,     # Lower bound for December multiplier
+    'clip_high': 1.40,    # Upper bound for December multiplier
+}
+
+# Ensemble Configuration
+CONFIG_ENSEMBLE = {
+    'weight_method1': 0.3,    # Weight for Weighted Geometric Mean
+    'weight_method2': 0.6,    # Weight for Seasonality Bump
 }
 ```
 
