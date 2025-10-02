@@ -29,12 +29,6 @@ Predict monthly housing transaction amounts for 96 geographic sectors in China f
   - Robust to outliers (critical for competition's two-stage MAPE scoring)
 - **What failed**: Complex ML (XGBoost, Prophet, Lasso) overfit to broken historical patterns; simple trend-following + seasonality wins
 
-### Weight Optimization Framework
-Weights discovered through systematic 2D grid search on validation set (last 6 months):
-- Tested 900+ combinations (w1: 0-1.5, w2: 0-1.5, step: 0.05)
-- Custom metric implementation matches competition's two-stage MAPE exactly
-- Validation prevents overfitting while preserving limited daily submissions (5/day)
-
 ## Models Attempted
 
 | Model | Custom MAPE | Actual Score | Correlation | Result |
